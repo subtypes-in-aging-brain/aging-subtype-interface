@@ -7,7 +7,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 from fpdf import FPDF
-from wand.image import Image as WImage 
+#from wand.image import Image as WImage 
 
 def create_report():
     class PDF(FPDF):
@@ -61,8 +61,8 @@ def create_report():
     return 
 
 def view_report():
-    img = WImage(filename='Report.pdf')
-    img
+    #img = WImage(filename='Report.pdf')
+    #img
     return 
 
 def email_report(your_emailid, password, receiver):
