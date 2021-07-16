@@ -1,7 +1,10 @@
 pandas
-six
+numpy
+pickle
 scikit-learn
 scipy
-numpy
 matplotlib
-seaborn
+fpdf
+wand
+smtplib
+email
