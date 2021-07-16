@@ -19,8 +19,6 @@ setuptools.setup(
 	'matplotlib',
 	'fpdf',
 	'wand',
-	'smtplib',
-	'email'
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
