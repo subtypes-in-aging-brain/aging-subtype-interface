@@ -19,6 +19,7 @@ setuptools.setup(
 	'matplotlib',
 	'fpdf',
 	'wand',
+	'wget',
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
