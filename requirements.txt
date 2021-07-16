@@ -1,13 +1,8 @@
-pandas
-six
-scikit-learn
-scipy
-numpy
-statsmodels
-matplotlib
-seaborn
+pandas==1.1.3
+numpy==1.19.2
+matplotlib==3.4.1
 pickle
-fpdf 
+fpdf==1.7.2
 wand 
 smtplib 
 email
