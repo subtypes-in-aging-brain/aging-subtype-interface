@@ -1,8 +1,10 @@
-pandas==1.1.3
-numpy==1.19.2
-matplotlib==3.4.1
+pandas
+numpy
+scipy
+scikit-learn
+matplotlib
 pickle
-fpdf==1.7.2
+fpdf
 wand 
 smtplib 
 email

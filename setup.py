@@ -12,15 +12,15 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     include_package_data=True,
     install_requires=[
-	'pandas'
-	'numpy'
-	'pickle'
-	'scikit-learn'
-	'scipy'
-	'matplotlib'
-	'fpdf'
-	'wand'
-	'smtplib'
+	'pandas',
+	'numpy',
+	'pickle',
+	'scikit-learn',
+	'scipy',
+	'matplotlib',
+	'fpdf',
+	'wand',
+	'smtplib',
 	'email'
     ],
     classifiers=[
