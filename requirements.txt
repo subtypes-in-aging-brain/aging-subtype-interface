@@ -3,7 +3,6 @@ numpy
 scipy
 scikit-learn
 matplotlib
-pickle
 fpdf
 wand 
 smtplib 

@@ -14,7 +14,6 @@ setuptools.setup(
     install_requires=[
 	'pandas',
 	'numpy',
-	'pickle',
 	'scikit-learn',
 	'scipy',
 	'matplotlib',
