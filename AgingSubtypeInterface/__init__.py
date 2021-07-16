@@ -7,6 +7,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 from fpdf import FPDF
+import wget
 #from wand.image import Image as WImage 
 
 def create_report():
@@ -19,19 +20,19 @@ def create_report():
 
         def imagex(self):
             self.set_xy(8.5,10.5)
-            self.image('/home/vikram/Projects/Sustain-FindSubtype-Test/emc.jpg',
+            self.image(wget.download('https://raw.githubusercontent.com/subtypes-in-aging-brain/aging-subtype-interface/main/data/emc.jpg'),
             link='', type='', w=1586/40, h=1920/120)
             self.set_xy(180.0,10.5)
-            self.image('/home/vikram/Projects/Sustain-FindSubtype-Test/europond.jpg',  
+            self.image(wget.download('https://raw.githubusercontent.com/subtypes-in-aging-brain/aging-subtype-interface/main/data/europond.jpg'),  
             link='', type='', w=1586/80, h=1920/80)
             self.set_xy(88.0,8.5)
-            self.image('/home/vikram/Projects/Sustain-FindSubtype-Test/sustain.jpg',  
+            self.image(wget.download('https://raw.githubusercontent.com/subtypes-in-aging-brain/aging-subtype-interface/main/data/sustain.jpg'),  
             link='', type='', w=34, h=20)
             self.set_xy(15.0,105)
-            self.image('/home/vikram/Projects/Sustain-FindSubtype-Test/subtype_1.png',  
+            self.image(wget.download('https://raw.githubusercontent.com/subtypes-in-aging-brain/aging-subtype-interface/main/data/subtype_1.png'),  
             link='', type='', w=180, h=50)
             self.set_xy(105,47)
-            self.image('/home/vikram/Projects/Sustain-FindSubtype-Test/prob.png',  
+            self.image(wget.download('https://raw.githubusercontent.com/subtypes-in-aging-brain/aging-subtype-interface/main/data/prob.png'),  
             link='', type='', w=60, h=45)
 
         def texts(self):
