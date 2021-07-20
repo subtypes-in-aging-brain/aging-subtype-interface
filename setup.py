@@ -20,7 +20,7 @@ setuptools.setup(
 	'fpdf',
 	'pdf2image',
 	'wget',
-	'cv2',
+	'opencv-python',
 	'scikit-image',
 	'urllib',
 	'cloudpickle',
