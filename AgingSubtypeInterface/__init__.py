@@ -27,7 +27,7 @@ def view_report():
 
     return
 
-def create_report():
+def create_report(prediction):
     class PDF(FPDF):
         def lines(self):
             self.set_fill_color(145.0, 204.0, 241.0) # color for outer rectangle
@@ -112,11 +112,3 @@ def email_report(your_emailid, password, receiver):
     print ("Successfully sent email")
 
     return
-
-def read_trained_model():
-
-    return
-
-def estimate_aging_subtype():
-
-    return 
