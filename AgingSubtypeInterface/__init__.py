@@ -64,7 +64,7 @@ def create_report(SubjectID, prediction):
                 self.image(wget.download('https://raw.githubusercontent.com/subtypes-in-aging-brain/aging-subtype-interface/main/data/subtype_2.png'),  
                 link='', type='', w=180, h=50)
             self.set_xy(105,47)
-            self.image('Probabilities.png'),  
+            self.image('Probabilities.png',  
             link='', type='', w=60, h=45)
 
         def texts(self, SubjectID, stage, subtypes, subtype):
