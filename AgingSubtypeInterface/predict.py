@@ -29,7 +29,7 @@ def aging_subtype(Features, IntracranialCavity):
     Dval = np.zeros((2,len(Features)))
     for i in range(2):
         Dval[i,:] = Features
-    Xnew = predict.subtype_and_stage_individuals(subtype_model,Dval,samples_sequence, samples_f, len(Features))
+    Xnew = subtype_and_stage_individuals(subtype_model,Dval,samples_sequence, samples_f, len(Features))
     return Xnew
 
 def subtype_and_stage_individuals(subtype_model, sustainData, samples_sequence, samples_f, N_samples):
