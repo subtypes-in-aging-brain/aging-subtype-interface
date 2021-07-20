@@ -145,10 +145,10 @@ def calculate_likelihood_stage(subtype_model, sustainData, S):
          in the SuStaIn model
         '''
 
-        N                                   = subtype_model.stage_biomarker_index.shape[1]
+        N                                   = subtype_model['stage_biomarker_index'].shape[1]
         S_inv                               = np.array([0] * N)
         S_inv[S.astype(int)]                = np.arange(N)
-        possible_biomarkers                 = np.unique(subtype_model.stage_biomarker_index)
+        possible_biomarkers                 = np.unique(subtype_model['stage_biomarker_index'])
         B                                   = len(possible_biomarkers)
         point_value                         = np.zeros((B, N + 2))
 
@@ -157,8 +157,10 @@ def calculate_likelihood_stage(subtype_model, sustainData, S):
 
         for i in range(B):
             b                               = possible_biomarkers[i]
-            event_location                  = np.concatenate([[0], S_inv[(subtype_model.stage_biomarker_index == b)[0]], [N]])
-            event_value                     = np.concatenate([[subtype_model.min_biomarker_zscore[i]], subtype_model.stage_zscore[subtype_model.stage_biomarker_index == b], [subtype_model.max_biomarker_zscore[i]]])
+            event_location                  = np.concatenate([[0], S_inv[(subtype_model['stage_biomarker_index'] == b)[0]], [N]])
+            event_value                     = np.concatenate([[subtype_model['min_biomarker_zscore'][i]], 
+                        subtype_model['stage_zscore'][subtype_model['stage_biomarker_index'] == b], 
+                        [subtype_model['max_biomarker_zscore'][i]]])
             for j in range(len(event_location) - 1):
 
                 if j == 0:  # FIXME: nasty hack to get Matlab indexing to match up - necessary here because indices are used for linspace limits
@@ -188,7 +190,7 @@ def calculate_likelihood_stage(subtype_model, sustainData, S):
         p_perm_k                            = np.zeros((M, N + 1))
 
         # optimised likelihood calc - take log and only call np.exp once after loop
-        sigmat = np.array(subtype_model.std_biomarker_zscore)
+        sigmat = np.array(subtype_model['std_biomarker_zscore'])
 
         factor                              = np.log(1. / np.sqrt(np.pi * 2.0) * sigmat)
         coeff                               = np.log(1. / float(N + 1))
