@@ -58,10 +58,11 @@ def create_report(SubjectID, prediction):
             link='', type='', w=34, h=20)
             self.set_xy(15.0,105)
             if subtype==0:
-                self.image(wget.download('https://raw.githubusercontent.com/subtypes-in-aging-brain/aging-subtype-interface/main/data/subtype_1.png'),  
+                self.image(wget.download('https://raw.githubusercontent.com/subtypes-in-aging-brain/aging-subtype-interface/main/data/subtype_1.png'),
+                link='', type='', w=180, h=50)
             else:
                 self.image(wget.download('https://raw.githubusercontent.com/subtypes-in-aging-brain/aging-subtype-interface/main/data/subtype_2.png'),  
-            link='', type='', w=180, h=50)
+                link='', type='', w=180, h=50)
             self.set_xy(105,47)
             self.image('Probabilities.png'),  
             link='', type='', w=60, h=45)
