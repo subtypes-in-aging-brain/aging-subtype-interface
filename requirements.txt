@@ -8,5 +8,4 @@ pdf2image
 wget
 opencv-python
 scikit-image
-urllib
 cloudpickle

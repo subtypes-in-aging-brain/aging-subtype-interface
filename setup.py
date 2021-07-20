@@ -22,7 +22,6 @@ setuptools.setup(
 	'wget',
 	'opencv-python',
 	'scikit-image',
-	'urllib',
 	'cloudpickle',
     ],
     classifiers=[
