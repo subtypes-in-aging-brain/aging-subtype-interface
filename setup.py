@@ -18,8 +18,12 @@ setuptools.setup(
 	'scipy',
 	'matplotlib',
 	'fpdf',
-	'wand',
+	'pdf2image',
 	'wget',
+	'cv2',
+	'scikit-image',
+	'urllib',
+	'cloudpickle',
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
