@@ -1,7 +1,7 @@
 import numpy as np
 import cloudpickle as cp 
 from urllib.request import urlopen 
-import pd
+import pandas as pd
 
 def aging_subtype(Features, IntracranialCavity):
     loaded_pickle_object = cp.load(urlopen("https://raw.githubusercontent.com/subtypes-in-aging-brain/aging-subtype-interface/main/data/TrainedSustainModel.pickle")) 
@@ -26,7 +26,9 @@ def aging_subtype(Features, IntracranialCavity):
         sigma=Z.loc[idx,'sd']
         Features[i] = (Features[i] - mu)/sigma
 
-    Dval = Features.reshape(1,-1)
+    Dval = np.zeros((2,len(Features)))
+    for i in range(2)
+        Dval[i,:] = Features
     Xnew = predict.subtype_and_stage_individuals(subtype_model,Dval,samples_sequence, samples_f, len(Features))
     return Xnew
 

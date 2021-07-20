@@ -12,6 +12,7 @@ from pdf2image import convert_from_path
 import cv2 as cv 
 from google.colab.patches import cv2_imshow # for image display
 from skimage import io
+from matplotlib import pyplot as plt
 
 def view_report():
     pages=convert_from_path("Report.pdf")    
@@ -27,7 +28,17 @@ def view_report():
 
     return
 
-def create_report(prediction):
+def create_report(SubjectID, prediction):
+    probabilities = prediction[4][0,:]
+    stage = prediction[2][0,0]
+    subtype=np.argmax(probabilities)
+    subtypes=['Early cortical atrophy', 
+        'Early ventricular enlargement']
+    plt.bar(subtypes, probabilities, color = '#feb24c', width=0.4)
+    plt.title('Probabilities of the subject being \n in the two aging subtypes')
+    plt.ylim(0,1)
+    plt.savefig('Probabilities.png')
+    plt.close()
     class PDF(FPDF):
         def lines(self):
             self.set_fill_color(145.0, 204.0, 241.0) # color for outer rectangle
@@ -35,7 +46,7 @@ def create_report(prediction):
             self.set_fill_color(255, 255, 255) # color for inner rectangle
             self.rect(8.0, 8.0, 194.0,282.0,'FD')
 
-        def imagex(self):
+        def imagex(self,subtype):
             self.set_xy(8.5,10.5)
             self.image(wget.download('https://raw.githubusercontent.com/subtypes-in-aging-brain/aging-subtype-interface/main/data/emc.jpg'),
             link='', type='', w=1586/40, h=1920/120)
@@ -46,34 +57,38 @@ def create_report(prediction):
             self.image(wget.download('https://raw.githubusercontent.com/subtypes-in-aging-brain/aging-subtype-interface/main/data/sustain.jpg'),  
             link='', type='', w=34, h=20)
             self.set_xy(15.0,105)
-            self.image(wget.download('https://raw.githubusercontent.com/subtypes-in-aging-brain/aging-subtype-interface/main/data/subtype_1.png'),  
+            if subtype==0:
+                self.image(wget.download('https://raw.githubusercontent.com/subtypes-in-aging-brain/aging-subtype-interface/main/data/subtype_1.png'),  
+            else:
+                self.image(wget.download('https://raw.githubusercontent.com/subtypes-in-aging-brain/aging-subtype-interface/main/data/subtype_2.png'),  
             link='', type='', w=180, h=50)
             self.set_xy(105,47)
-            self.image(wget.download('https://raw.githubusercontent.com/subtypes-in-aging-brain/aging-subtype-interface/main/data/prob.png'),  
+            self.image('Probabilities.png'),  
             link='', type='', w=60, h=45)
 
-        def texts(self):
+        def texts(self, SubjectID, stage, subtypes, subtype):
+            
             self.set_xy(10.0,45.0)    
             self.set_text_color(0, 0, 0)
             self.set_font('Times', 'B', 14)
             self.cell(0,0,'Subject\'s Result Summary:')
             self.set_font('Times', '', 12)
             self.set_xy(10.0,65.0)   
-            self.cell(0,0,'Sex: Male')
-            self.set_xy(10.0,70.0)
-            self.cell(0,0,'Age: 73')
+            self.cell(0,0,'Subject ID: ' + SubjectID)
+            #self.set_xy(10.0,70.0)
+            #self.cell(0,0,'Age: 73')
             self.set_xy(10.0,75.0)
-            self.cell(0,0,'Most likely subtype: Early cortical atrophy subtype')
+            self.cell(0,0,'Most likely subtype: '+subtypes[subtype]+ ' subtype')
             self.set_xy(10.0,80.0)
-            self.cell(0,0,'Model stage: 15 of 33')
+            self.cell(0,0,'Model stage: ' + str(int(stage)) +' of 33')
             self.set_xy(25.0,100.0)
             self.multi_cell(0,0,'The figure below shows the typical brain atrophy pattern in the subtype the subject is most likely in.')
 
     pdf = PDF()#pdf object
     pdf.add_page()
     pdf.lines()
-    pdf.imagex()
-    pdf.texts()
+    pdf.imagex(subtype)
+    pdf.texts(SubjectID, stage, subtypes, subtype)
     pdf.output('Report.pdf','F')
     view_report()
     return 
